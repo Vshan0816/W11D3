@@ -20,10 +20,14 @@ const cartReducer = (state = {}, action) => {
 
     switch(action.type){
         case ADDPRODUCE:
+            if(nextState[action.produceId]){
+                nextState[action.produceId].count += 1
+            } else {
             nextState[action.produceId] = { id: action.produceId, count: 1}
+            }
             return nextState
         case REMOVEPRODUCE:
-            nextState[action.produceId] = {}
+            delete nextState[action.produceId]
             return nextState
         default:
             return nextState
